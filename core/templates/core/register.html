@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block content %}
+  <div class="auth-card">
+    <h2>Create Your Account</h2>
+    <p>Register now to save your cart, view order history, and shop faster.</p>
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+{% endblock %}

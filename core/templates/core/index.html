@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% block content %}
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1 class="text-primary highlight">Discover the Best Deals at ShopSite</h1>
+      <p class="tagline">
+        Explore a wide range of products tailored just for you — from trending gadgets to fashion essentials.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{% url 'shop' %}">Start Shopping Now</a>
+        <a class="btn btn-secondary" href="{% url 'features' %}">See Features</a>
+      </div>
+    </div>
+
+    <div class="hero-cards">
+      <div class="feature-card">
+        <h3>Fast Checkout</h3>
+        <p>Place orders instantly with a secure and smooth checkout experience.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Smart Search</h3>
+        <p>Find products quickly using search and category filters.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Order Tracking</h3>
+        <p>Review past purchases and stay on top of every order.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

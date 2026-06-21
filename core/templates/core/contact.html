@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block content %}
+  <section class="section-block">
+    <div class="section-intro">
+      <h1 class="section-title">Get in Touch</h1>
+      <p class="section-subtitle">Questions, feedback, or partnership ideas? We’re here to help.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h2>Contact Information</h2>
+        <p><strong>Email:</strong> info@shoppingsite.com</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Address:</strong> 101 Shopping Plaza, City Center, India</p>
+      </div>
+
+      <div class="contact-card contact-form-card">
+        <h2>Send a Message</h2>
+        <form method="post" class="contact-form">
+          {% csrf_token %}
+          <input type="text" name="name" placeholder="Your Name" />
+          <input type="email" name="email" placeholder="Your Email" />
+          <textarea name="message" placeholder="Your Message" rows="6"></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+{% load mul %}
+{% block content %}
+  <div class="page-heading">
+    <h1>Order History</h1>
+    <p>Review your past orders and see all the items you purchased.</p>
+  </div>
+
+  {% if orders %}
+    <div class="order-history-list">
+      {% for order in orders %}
+        <div class="order-summary-card">
+          <div class="order-header">
+            <h2>Order #{{ order.id }}</h2>
+            <p>Placed on {{ order.created_at|date:'F j, Y, g:i A' }}</p>
+          </div>
+          <table class="cart-table order-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in order.orderitem_set.all %}
+                <tr>
+                  <td>{{ item.product.name }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>
+                    {% if item.product.discount_price %}
+                      <span class="old-price">₹{{ item.product.price }}</span>
+                      <span class="discount-price">₹{{ item.product.discount_price }}</span>
+                    {% else %}
+                      ₹{{ item.product.price }}
+                    {% endif %}
+                  </td>
+                  <td>₹{{ item.product.discount_price|default:item.product.price|mul:item.quantity }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="cart-summary">
+            <p class="summary-label">Order Total</p>
+            <p class="summary-value">₹{{ order.total }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>You have no orders yet. Add items to your cart and place your first order today.</p>
+      <a class="btn btn-primary" href="{% url 'shop' %}">Start Shopping</a>
+    </div>
+  {% endif %}
+{% endblock %}

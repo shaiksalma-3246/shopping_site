@@ -1,0 +1,65 @@
+
+{% extends 'core/base.html' %}
+{% load mul %}
+{% block content %}
+  <div class="page-heading">
+    <h1>Your Cart</h1>
+    <p>Review your selected items, update quantities, and checkout with confidence.</p>
+  </div>
+
+  {% if cart_items %}
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in cart_items %}
+        <tr>
+          <td class="product-details">
+            <strong>{{ item.product.name }}</strong>
+            <span class="small-text">{{ item.product.get_category_display }}</span>
+          </td>
+          <td>
+            <div class="quantity-controls">
+              <a class="qty-btn" href="{% url 'decrease_quantity' item.id %}">-</a>
+              <span>{{ item.quantity }}</span>
+              <a class="qty-btn" href="{% url 'increase_quantity' item.id %}">+</a>
+            </div>
+          </td>
+          <td>
+            {% if item.product.discount_price %}
+              <span class="old-price">₹{{ item.product.price }}</span>
+              <span class="discount-price">₹{{ item.product.discount_price }}</span>
+            {% else %}
+              ₹{{ item.product.price }}
+            {% endif %}
+          </td>
+          <td>
+            ₹{{ item.product.discount_price|default:item.product.price|mul:item.quantity }}
+          </td>
+          <td>
+            <a class="btn btn-secondary" href="{% url 'remove_from_cart' item.id %}">Remove</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="cart-summary">
+      <p class="summary-label">Cart Total</p>
+      <p class="summary-value">₹{{ total }}</p>
+      <a class="btn btn-primary" href="{% url 'place_order' %}">Place Order</a>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>Your cart is empty. Head back to the shop and add your favorites.</p>
+      <a class="btn btn-primary" href="{% url 'shop' %}">Browse Products</a>
+    </div>
+  {% endif %}
+{% endblock %}

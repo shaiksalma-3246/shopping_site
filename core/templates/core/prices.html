@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% block content %}
+  <section class="section-block">
+    <div class="section-intro">
+      <h1 class="section-title">Pricing Plans</h1>
+      <p class="section-subtitle">Choose the plan that fits your needs and get access to more powerful shopping features.</p>
+    </div>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h2>Basic</h2>
+        <p class="plan-price">₹0</p>
+        <ul>
+          <li>Browse all products</li>
+          <li>Add to Cart</li>
+          <li>Basic Support</li>
+          <li>Order Placement</li>
+        </ul>
+        <button class="btn btn-secondary">Get Started</button>
+      </div>
+
+      <div class="plan-card highlight-plan">
+        <h2>Standard</h2>
+        <p class="plan-price">₹299/month</p>
+        <ul>
+          <li>Browse & Buy Products</li>
+          <li>Order Tracking</li>
+          <li>Email Support</li>
+          <li>Priority Checkout</li>
+        </ul>
+        <button class="btn btn-primary">Subscribe</button>
+      </div>
+
+      <div class="plan-card">
+        <h2>Premium</h2>
+        <p class="plan-price">₹699/month</p>
+        <ul>
+          <li>All Standard Features</li>
+          <li>Free Priority Shipping</li>
+          <li>24/7 Live Support</li>
+          <li>Early Access to Sales</li>
+        </ul>
+        <button class="btn btn-secondary">Join Premium</button>
+      </div>
+    </div>
+  </section>
+{% endblock %}
