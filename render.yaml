@@ -3,7 +3,7 @@ services:
     name: shopping-site
     env: python
     branch: master
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
     startCommand: gunicorn shopping_site.wsgi --log-file -
     envVars:
       - key: DEBUG
